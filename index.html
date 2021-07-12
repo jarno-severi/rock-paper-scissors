@@ -8,22 +8,70 @@
 
 <body>
   <script>
-    // Käyttäjä syöttää kivi, paperi, sakset HUOM! case-insensitive()
-    let chooseRpc = prompt("Valitse: Kivi, Paperi vai Sakset?");
-    let userChoice = chooseRpc.toLowerCase();
-    console.log(userChoice);
-
-    // AI valitsee randomilla kivi, paperi, sakset funtiolla computerPlay()
-    // Tehdään array vaihtoehdoists:
-    const rpcArray = ['kivi', 'paperi', 'sakset'];
-
-    // Numeron arpominen 1-3: 
-    const random = Math.floor(Math.random() * rpcArray.length);
-    let aiChoice = rpcArray[random];
-    console.log(aiChoice);
+    
+    // AI valitsee randomilla kivi, paperi, sakset functiolla computerPlay()
+    function computerPlay() {
+      // Tehdään array vaihtoehdoista:
+      const rpcArray = ['kivi', 'paperi', 'sakset'];
+      // Numeron arpominen 1-3: 
+      const random = Math.floor(Math.random() * rpcArray.length);
+      // Palautetaan AI valinta rpc arraysta
+      return computerSelection = rpcArray[random];
+    }
+    
+    // Käyttäjä syöttää kivi, paperi, sakset 
+    let select = prompt("Valitse: Kivi, Paperi vai Sakset?");
+    // HUOM! case-insensitive:
+    let playerSelection = select.toLowerCase();
+    // AI tekee valinnan
+    computerPlay();
 
     // Verrataan käyttäjän ja AI valintoja playRound(playerSelection, computerSelectio)
-    if (userChoice === "kivi" || aiChoice === "kivi") {
+    if (playerSelection === computerSelection) {
+      console.log("Tasapeli");
+    } 
+    
+    else {
+
+      if (playerSelection === "kivi") {
+        switch (computerSelection) {
+          case "paperi":
+            console.log("Paperi voittaa!")
+            break;
+          
+          case "sakset":
+            console.log("Kivi voittaa!")
+            break;
+        }
+      }
+
+      if (playerSelection === "paperi") {
+        switch (computerSelection) {
+          case "sakset":
+            console.log("Sakset voittaa!")
+            break;
+          
+          case "kivi":
+            console.log("Paperi voittaa!")
+            break;
+        }
+      }
+
+      if (playerSelection === "sakset") {
+        switch (computerSelection) {
+          case "kivi":
+            console.log("Kivi voittaa!")
+            break;
+          
+          case "paperi":
+            console.log("Sakset voittaa!")
+            break;
+        }
+      }
+    }
+
+
+    /* if (userChoice === "kivi" || aiChoice === "kivi") {
       if (userChoice === "paperi" || aiChoice === "paperi") {
         console.log("paperi voitti!")
       }
@@ -33,7 +81,7 @@
       if (userChoice === aiChoice) {
         console.log("tasapeli!")
       }
-    }
+    } */
 
 
     // Peliä game() pelataan yhteenäs 5 kierrosta 
