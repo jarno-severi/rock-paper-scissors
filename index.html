@@ -87,37 +87,54 @@
     }
 
 
-    // Peliä game() pelataan yhteensä 5 kierrosta
+    // Peliä pelataan yhteensä 5 kierrosta
     function game() {
-      const playerSelection = playerPlay();
-      const computerSelection = computerPlay();
 
+      let playerSelection;
+      let computerSelection;
+
+      // First round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
       // console.log(playerSelection, computerSelection);
+      const firstRound = playRound(playerSelection, computerSelection);
 
-      const roundScore = playRound(playerSelection, computerSelection);
+      // Second round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const secondRound = playRound(playerSelection, computerSelection);
 
-      // console.log(roundScore);
-      return roundScore;
+      // Third round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const thirdRound = playRound(playerSelection, computerSelection);
+
+      // Fourth round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const fourthRound = playRound(playerSelection, computerSelection);
+
+      // Fifth round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const fifthRound = playRound(playerSelection, computerSelection);
+      
+      
+      // Lasketaan pelaajan voitetut erät yhteensä:
+      const gameScorePlayer = firstRound[0] + secondRound[0] + thirdRound[0] + fourthRound[0] + fifthRound[0];
+      console.log("Player score: " + gameScorePlayer);
+      
+      // Lasketaan tietokoneen voitetut erät yhteensä:
+      const gameScoreComputer = firstRound[1] + secondRound[1] + thirdRound[1] + fourthRound[1] + fifthRound[1];
+      console.log("Computer score: " + gameScoreComputer);
+
     }
 
-    let firstRound = game();
-    // console.log(firstRound[0], firstRound[1]);
-    let secondRound = game();
-    // console.log(secondRound[0], secondRound[1]);
-    let thirdRound = game();
-    // console.log(thirdRound[0], thirdRound[1]);
-    let fourthRound = game();
-    // console.log(fourthRound[0], fourthRound[1]);
-    let fifthRound = game();
-    // console.log(fifthRound[0], fifthRound[1]);
-
-    // Lasketaan pelaajan voitetut erät yhteensä:
-    let gameScorePlayer = firstRound[0] + secondRound[0] + thirdRound[0] + fourthRound[0] + fifthRound[0];
-
-    // Lasketaan tietokoneen voitetut erät yhteensä:
-    let gameScoreComputer = firstRound[1] + secondRound[1] + thirdRound[1] + fourthRound[1] + fifthRound[1];
-
-    console.log("You won " + gameScorePlayer + " round(s). Computer won " + gameScoreComputer + " round(s).");
+    game();
 
   </script>
 </body>
