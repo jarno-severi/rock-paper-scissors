@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <script>
+    // Setting up variables for the game
+    const gameItems = ['rock', 'paper', 'scissors'];
+    let computerSelection;
+    let playerSelection;
+    let computerScore = 0;
+    let playerScore = 0;
+
+    function computerPlay() {
+      const random = Math.floor(Math.random() * gameItems.length);
+      computerSelection = gameItems[random];
+    }
+
+    function playerPlay() {
+      playerSelection = prompt("Rock, Paper or Scissors?");
+      playerSelection = playerSelection.toLowerCase();
+    }
+
+    function playRound() {
+
+      console.log("Player: " + playerSelection + " vs AI: " + computerSelection);
+
+      if (playerSelection === computerSelection) {
+        console.log("It's a tie!");
+      }
+
+      else {
+
+        if (playerSelection === "rock") {
+          switch (computerSelection) {
+            case "paper":
+              console.log("You lose! Paper beats Rock.")
+              computerScore += 1;
+              break;
+
+            case "scissors":
+              console.log("You win! Rock beats Scissors")
+              playerScore += 1;
+              break;
+          }
+        }
+
+        if (playerSelection === "paper") {
+          switch (computerSelection) {
+            case "scissors":
+              console.log("You lose! Scissors beats Paper.")
+              computerScore += 1;
+              break;
+
+            case "rock":
+              console.log("You win! Paper beats Rock.")
+              playerScore += 1;
+              break;
+          }
+        }
+
+        if (playerSelection === "scissors") {
+          switch (computerSelection) {
+            case "rock":
+              console.log("You lose! Rock beats Scissors.")
+              computerScore += 1;
+              break;
+
+            case "paper":
+              console.log("You win! Scissors beats Paper.")
+              playerScore += 1;
+              break;
+          }
+        }
+      }
+    }
+
+    function game() {
+      computerPlay();
+      playerPlay();
+      playRound();
+    }
+    
+    for (let i=0; i < 5; i++) {
+      game();
+      console.log("Player score: " + playerScore);
+      console.log("AI score: " + computerScore);
+    }
+
+  </script>
+</body>
+
+</html>
