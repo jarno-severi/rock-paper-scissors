@@ -15,19 +15,22 @@
     let computerScore = 0;
     let playerScore = 0;
 
+    // Assing random choice for AI
     function computerPlay() {
       const random = Math.floor(Math.random() * gameItems.length);
       computerSelection = gameItems[random];
     }
 
+    // Ask for player choice
     function playerPlay() {
       playerSelection = prompt("Rock, Paper or Scissors?");
       playerSelection = playerSelection.toLowerCase();
     }
 
+    // Round of RPS comparisons between player and AI choices. Also adds up points to either one or no points to either in ties.
     function playRound() {
 
-      console.log("Player: " + playerSelection + " vs AI: " + computerSelection);
+      console.log("1P: " + playerSelection + " vs AI: " + computerSelection);
 
       if (playerSelection === computerSelection) {
         console.log("It's a tie!");
@@ -79,12 +82,14 @@
       }
     }
 
+    // Play a round of RPS
     function game() {
       computerPlay();
       playerPlay();
       playRound();
     }
     
+    // 5 rounds of RPS and points overview.
     for (let i=0; i < 5; i++) {
       game();
       console.log("Player score: " + playerScore);
