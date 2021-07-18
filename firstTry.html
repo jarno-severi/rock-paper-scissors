@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <script>
+
+    function computerPlay() {
+      const rpcArray = ['kivi', 'paperi', 'sakset'];
+      const random = Math.floor(Math.random() * rpcArray.length);
+      return rpcArray[random];
+    }
+
+
+    function playerPlay() {
+      const select = prompt("Kivi, Paperi vai Sakset?");
+      return select.toLowerCase();
+    }
+
+
+    function playRound(playerSelection, computerSelection) {
+
+      let playerScore = 0;
+      let computerScore = 0;
+
+      if (playerSelection === computerSelection) {
+        console.log("It's a tie!");
+      }
+
+      else {
+
+        if (playerSelection === "kivi") {
+          switch (computerSelection) {
+            case "paperi":
+              console.log("You lose! Paper beats Rock.")
+              ++computerScore;
+              break;
+
+            case "sakset":
+              console.log("You win! Rock beats Scissors")
+              ++playerScore;
+              break;
+          }
+        }
+
+        if (playerSelection === "paperi") {
+          switch (computerSelection) {
+            case "sakset":
+              console.log("You lose! Scissors beats Paper.")
+              ++computerScore;
+              break;
+
+            case "kivi":
+              console.log("You win! Paper beats Rock.")
+              ++playerScore;
+              break;
+          }
+        }
+
+        if (playerSelection === "sakset") {
+          switch (computerSelection) {
+            case "kivi":
+              console.log("You lose! Rock beats Scissors.")
+              ++computerScore;
+              break;
+
+            case "paperi":
+              console.log("You win! Scissors beats Paper.")
+              ++playerScore;
+              break;
+          }
+        }
+      }
+      return [playerScore, computerScore];
+    }
+
+
+    function game() {
+
+      let playerSelection;
+      let computerSelection;
+      
+      // First round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const firstRound = playRound(playerSelection, computerSelection);
+
+      // Second round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const secondRound = playRound(playerSelection, computerSelection);
+
+      // Third round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const thirdRound = playRound(playerSelection, computerSelection);
+
+      // Fourth round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const fourthRound = playRound(playerSelection, computerSelection);
+
+      // Fifth round
+      playerSelection = playerPlay();
+      computerSelection = computerPlay();
+      // console.log(playerSelection, computerSelection);
+      const fifthRound = playRound(playerSelection, computerSelection);
+      
+      
+      // Lasketaan pelaajan voitetut erät yhteensä:
+      const gameScorePlayer = firstRound[0] + secondRound[0] + thirdRound[0] + fourthRound[0] + fifthRound[0];
+      // console.log("Player score: " + gameScorePlayer);
+      
+      // Lasketaan tietokoneen voitetut erät yhteensä:
+      const gameScoreComputer = firstRound[1] + secondRound[1] + thirdRound[1] + fourthRound[1] + fifthRound[1];
+      // console.log("Computer score: " + gameScoreComputer);
+
+      if (gameScorePlayer > gameScoreComputer) {
+        console.log("After 5 rounds, You are the winner! " + gameScorePlayer + " - " + gameScoreComputer);
+      } else if (gameScorePlayer < gameScoreComputer) {
+        console.log("After 5 rounds, You lost the game! " + gameScoreComputer + " - " + gameScorePlayer);
+      } else {
+        console.log("It's a tie after 5 games, wow! " + gameScorePlayer + " - " + gameScoreComputer);
+        
+      }
+
+    }
+
+    game();
+
+  </script>
+</body>
+
+</html>

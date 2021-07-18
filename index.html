@@ -2,30 +2,32 @@
 <html>
 
 <head>
-  <title>Rock Paper Scissors</title>
+  <title>Page Title</title>
   <meta charset="UTF-8" />
 </head>
 
 <body>
   <script>
+    // Setting up variables for the game
+    const gameItems = ['rock', 'paper', 'scissors'];
+    let computerSelection;
+    let playerSelection;
+    let computerScore = 0;
+    let playerScore = 0;
 
     function computerPlay() {
-      const rpcArray = ['kivi', 'paperi', 'sakset'];
-      const random = Math.floor(Math.random() * rpcArray.length);
-      return rpcArray[random];
+      const random = Math.floor(Math.random() * gameItems.length);
+      computerSelection = gameItems[random];
     }
-
 
     function playerPlay() {
-      const select = prompt("Kivi, Paperi vai Sakset?");
-      return select.toLowerCase();
+      playerSelection = prompt("Rock, Paper or Scissors?");
+      playerSelection = playerSelection.toLowerCase();
     }
 
+    function playRound() {
 
-    function playRound(playerSelection, computerSelection) {
-
-      let playerScore = 0;
-      let computerScore = 0;
+      console.log("Player: " + playerSelection + " vs AI: " + computerSelection);
 
       if (playerSelection === computerSelection) {
         console.log("It's a tie!");
@@ -33,108 +35,61 @@
 
       else {
 
-        if (playerSelection === "kivi") {
+        if (playerSelection === "rock") {
           switch (computerSelection) {
-            case "paperi":
+            case "paper":
               console.log("You lose! Paper beats Rock.")
-              ++computerScore;
+              computerScore += 1;
               break;
 
-            case "sakset":
+            case "scissors":
               console.log("You win! Rock beats Scissors")
-              ++playerScore;
+              playerScore += 1;
               break;
           }
         }
 
-        if (playerSelection === "paperi") {
+        if (playerSelection === "paper") {
           switch (computerSelection) {
-            case "sakset":
+            case "scissors":
               console.log("You lose! Scissors beats Paper.")
-              ++computerScore;
+              computerScore += 1;
               break;
 
-            case "kivi":
+            case "rock":
               console.log("You win! Paper beats Rock.")
-              ++playerScore;
+              playerScore += 1;
               break;
           }
         }
 
-        if (playerSelection === "sakset") {
+        if (playerSelection === "scissors") {
           switch (computerSelection) {
-            case "kivi":
+            case "rock":
               console.log("You lose! Rock beats Scissors.")
-              ++computerScore;
+              computerScore += 1;
               break;
 
-            case "paperi":
+            case "paper":
               console.log("You win! Scissors beats Paper.")
-              ++playerScore;
+              playerScore += 1;
               break;
           }
         }
       }
-      return [playerScore, computerScore];
     }
-
 
     function game() {
-
-      let playerSelection;
-      let computerSelection;
-      
-      // First round
-      playerSelection = playerPlay();
-      computerSelection = computerPlay();
-      // console.log(playerSelection, computerSelection);
-      const firstRound = playRound(playerSelection, computerSelection);
-
-      // Second round
-      playerSelection = playerPlay();
-      computerSelection = computerPlay();
-      // console.log(playerSelection, computerSelection);
-      const secondRound = playRound(playerSelection, computerSelection);
-
-      // Third round
-      playerSelection = playerPlay();
-      computerSelection = computerPlay();
-      // console.log(playerSelection, computerSelection);
-      const thirdRound = playRound(playerSelection, computerSelection);
-
-      // Fourth round
-      playerSelection = playerPlay();
-      computerSelection = computerPlay();
-      // console.log(playerSelection, computerSelection);
-      const fourthRound = playRound(playerSelection, computerSelection);
-
-      // Fifth round
-      playerSelection = playerPlay();
-      computerSelection = computerPlay();
-      // console.log(playerSelection, computerSelection);
-      const fifthRound = playRound(playerSelection, computerSelection);
-      
-      
-      // Lasketaan pelaajan voitetut erät yhteensä:
-      const gameScorePlayer = firstRound[0] + secondRound[0] + thirdRound[0] + fourthRound[0] + fifthRound[0];
-      // console.log("Player score: " + gameScorePlayer);
-      
-      // Lasketaan tietokoneen voitetut erät yhteensä:
-      const gameScoreComputer = firstRound[1] + secondRound[1] + thirdRound[1] + fourthRound[1] + fifthRound[1];
-      // console.log("Computer score: " + gameScoreComputer);
-
-      if (gameScorePlayer > gameScoreComputer) {
-        console.log("After 5 rounds, You are the winner! " + gameScorePlayer + " - " + gameScoreComputer);
-      } else if (gameScorePlayer < gameScoreComputer) {
-        console.log("After 5 rounds, You lost the game! " + gameScoreComputer + " - " + gameScorePlayer);
-      } else {
-        console.log("It's a tie after 5 games, wow! " + gameScorePlayer + " - " + gameScoreComputer);
-        
-      }
-
+      computerPlay();
+      playerPlay();
+      playRound();
     }
-
-    game();
+    
+    for (let i=0; i < 5; i++) {
+      game();
+      console.log("Player score: " + playerScore);
+      console.log("AI score: " + computerScore);
+    }
 
   </script>
 </body>
