@@ -1,8 +1,8 @@
 // Setting up variables for the game
 
 const gameItems = ['rock', 'paper', 'scissors'];
-let computerSelection;
-let playerSelection;
+// let computerSelection;
+// let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
 
@@ -10,39 +10,40 @@ let playerScore = 0;
 // Assing random choice for AI
 
 function computerPlay() {
+
     const random = Math.floor(Math.random() * gameItems.length);
-    computerSelection = gameItems[random];
+    return gameItems[random];
+    
 }
 
 
 // Ask for player choice
 
 function playerPlay() {
-    playerSelection = prompt("Rock, Paper or Scissors? [Cancel to random]");
+
+    let playerSelection = prompt("Rock, Paper or Scissors? [Cancel to random]");
+
+    // Checks for null or mispelled choice
 
     if (playerSelection === null) {
-        console.log("Selecting random choice...");
+    console.log("Selecting random choice...");
         const random = Math.floor(Math.random() * gameItems.length);
         playerSelection = gameItems[random];
+
+    } else if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+        console.log("Typographical error! Try again.")
+        playerSelection = playerPlay();
     }
 
-    playerSelection = playerSelection.toLowerCase();
-
+    return playerSelection.toLowerCase();
 }
 
 
 // Round of RPS comparisons between player and AI choices. Also adds up points to either one or no points to either in ties.
 
-function playRound() {
+function playRound(playerSelection, computerSelection) {
 
     console.log("// P1: " + playerSelection + " vs AI: " + computerSelection);
-
-
-    if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-        console.log("Typographical error! Try again.")
-        playerPlay();
-    }
-
 
     if (playerSelection === computerSelection) {
         console.log("It's a tie!");
@@ -95,18 +96,22 @@ function playRound() {
 }
 
 
-// A round of RPS
+// Define how many rounds of RPS to run
 
-function game() {
-    computerPlay();
-    playerPlay();
-    playRound();
+function game(rounds) {
+
+    for (let i = 0; i < rounds; i++) {
+
+        playerSelection = playerPlay();
+        computerSelection = computerPlay();
+
+        playRound(playerSelection, computerSelection);
+    }
 }
 
+// Game of RPS and final score
 
-// 5 rounds of RPS and points overview.
-
-for (let i = 0; i < 5; i++) { game(); }
+game(3);
 
 console.log("// Game ends");
 console.log("Final score");
