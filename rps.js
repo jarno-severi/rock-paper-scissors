@@ -106,9 +106,9 @@ function game() {
 
 // 5 rounds of RPS and points overview.
 
-for (let i = 0; i < 5; i++) { game(); } 
+for (let i = 0; i < 5; i++) { game(); }
 
-console.log("// Game ends"); 
-console.log("Final score"); 
+console.log("// Game ends");
+console.log("Final score");
 console.log("Player: " + playerScore);
-console.log(" AI: " + computerScore);
+console.log("AI: " + computerScore);
