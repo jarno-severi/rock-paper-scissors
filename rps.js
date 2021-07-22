@@ -13,7 +13,7 @@ function computerPlay() {
 
     const random = Math.floor(Math.random() * gameItems.length);
     return gameItems[random];
-    
+
 }
 
 
@@ -25,7 +25,7 @@ function playerPlay() {
 
     // Checks for null or mispelled choice
 
-    if (playerSelection === null) {
+    if (playerSelection === null || playerSelection === "") {
     console.log("Selecting random choice...");
         const random = Math.floor(Math.random() * gameItems.length);
         playerSelection = gameItems[random];
