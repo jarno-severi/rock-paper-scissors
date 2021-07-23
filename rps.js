@@ -22,6 +22,7 @@ function computerPlay() {
 function playerPlay() {
 
     let playerSelection = prompt("Rock, Paper or Scissors? [OK to random]");
+    playerSelection.toLowerCase();
 
     // Checks for null (Cancel) or empty (OK) or mispell
 
@@ -39,7 +40,7 @@ function playerPlay() {
         playerSelection = playerPlay();
     }
 
-    return playerSelection.toLowerCase();
+    return playerSelection;
 }
 
 
