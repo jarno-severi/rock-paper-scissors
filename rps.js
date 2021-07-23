@@ -11,9 +11,8 @@ function computerPlay() {
 
     const random = Math.floor(Math.random() * gameItems.length);
     let computerSelection = gameItems[random];
-    
-    return computerSelection;
 
+    return computerSelection;
 }
 
 
@@ -22,23 +21,29 @@ function computerPlay() {
 function playerPlay() {
 
     let playerSelection = prompt("Rock, Paper or Scissors? [OK to random]");
-    playerSelection.toLowerCase();
 
-    // Checks for null (Cancel) or empty (OK) or mispell
+    // Check for null (Cancel) or empty (OK)
 
     if (playerSelection === null) {
         playerSelection = "undefined";
-    }
 
-    else if (playerSelection === "") {
-    console.log("Selecting random choice...");
+    } else if (playerSelection === "") {
+
+        console.log("Selecting random choice...");
         const random = Math.floor(Math.random() * gameItems.length);
         playerSelection = gameItems[random];
+        
+    } else { 
 
-    } else if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-        console.log("Typographical error! Try again.")
-        playerSelection = playerPlay();
-    }
+        playerSelection = playerSelection.toLowerCase();
+
+        // Check for typo
+        
+        if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
+            console.log("Typographical error! Try again.")
+            playerSelection = playerPlay();
+        }
+    } 
 
     return playerSelection;
 }
@@ -127,21 +132,20 @@ function game(rounds) {
     newGame ? tryAgain = confirm("Wanna try again?") : tryAgain = false;
 
     tryAgain ? game(3) : console.log("// GAME OVER");
-
 }
 
 
 // Final score and chance to redeem victory after tie or loss, win ends the game. Instructions after a win to play the game again @ tryAgain variable.
 
-function gameScore(){
+function gameScore() {
 
     if (playerScore === computerScore) {
         alert("Game was a tie!\n- - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
         return 1;
-        
+
     } else if (playerScore > computerScore) {
         alert("You are the winner!\n- - - - - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
-        
+
     } else {
         alert("Sorry, you lost!\n- - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
         return 1;
