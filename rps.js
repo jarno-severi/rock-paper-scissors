@@ -5,7 +5,7 @@ let computerScore = 0;
 let playerScore = 0;
 
 
-// Assing random choice for AI
+// Return random choice from [rock, paper, scissors] for AI
 
 function computerPlay() {
 
@@ -21,7 +21,7 @@ function computerPlay() {
 
 function playerPlay() {
 
-    let playerSelection = prompt("Rock, Paper or Scissors? [empty = random]");
+    let playerSelection = prompt("Rock, Paper or Scissors? [OK to random]");
 
     // Checks for null (Cancel) or empty (OK) or mispell
 
@@ -43,7 +43,7 @@ function playerPlay() {
 }
 
 
-// Round of RPS comparisons between player and AI choices. Also adds up points to either one or no points to either in ties.
+// Round of RPS comparisons between player and AI choices. Also adds up points to either one or no points to either in ties. Also gives a loss to player if no choice is made.
 
 function playRound(playerSelection, computerSelection) {
 
