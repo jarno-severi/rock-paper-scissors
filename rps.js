@@ -1,8 +1,6 @@
 // Setting up variables for the game
 
 const gameItems = ['rock', 'paper', 'scissors'];
-// let computerSelection;
-// let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
 
@@ -12,7 +10,9 @@ let playerScore = 0;
 function computerPlay() {
 
     const random = Math.floor(Math.random() * gameItems.length);
-    return gameItems[random];
+    let computerSelection = gameItems[random];
+    
+    return computerSelection;
 
 }
 
@@ -21,11 +21,15 @@ function computerPlay() {
 
 function playerPlay() {
 
-    let playerSelection = prompt("Rock, Paper or Scissors? [Cancel to random]");
+    let playerSelection = prompt("Rock, Paper or Scissors? [empty = random]");
 
-    // Checks for null or mispelled choice
+    // Checks for null (Cancel) or empty (OK) or mispell
 
-    if (playerSelection === null || playerSelection === "") {
+    if (playerSelection === null) {
+        playerSelection = "undefined";
+    }
+
+    else if (playerSelection === "") {
     console.log("Selecting random choice...");
         const random = Math.floor(Math.random() * gameItems.length);
         playerSelection = gameItems[random];
@@ -92,6 +96,11 @@ function playRound(playerSelection, computerSelection) {
                     break;
             }
         }
+
+        if (playerSelection === "undefined") {
+            console.log("You lose! Any selection beats no selection!")
+            computerScore++;
+        }
     }
 }
 
@@ -100,20 +109,52 @@ function playRound(playerSelection, computerSelection) {
 
 function game(rounds) {
 
+    computerScore = 0;
+    playerScore = 0;
+
     for (let i = 0; i < rounds; i++) {
 
-        playerSelection = playerPlay();
-        computerSelection = computerPlay();
+        let playerSelection = playerPlay();
+        let computerSelection = computerPlay();
 
         playRound(playerSelection, computerSelection);
     }
+
+    let newGame = gameScore();
+    let tryAgain;
+
+    newGame ? tryAgain = confirm("Wanna try again?") : tryAgain = false;
+
+    tryAgain ? game(3) : console.log("// GAME OVER");
+
 }
 
-// Game of RPS and final score
 
-game(3);
+// Final score and chance to redeem victory after tie or loss, win ends the game. Instructions after a win to play the game again @ tryAgain variable.
 
-console.log("// Game ends");
-console.log("Final score");
-console.log("Player: " + playerScore);
-console.log("AI: " + computerScore);
+function gameScore(){
+
+    if (playerScore === computerScore) {
+        alert("Game was a tie!\n- - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
+        return 1;
+        
+    } else if (playerScore > computerScore) {
+        alert("You are the winner!\n- - - - - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
+        
+    } else {
+        alert("Sorry, you lost!\n- - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
+        return 1;
+    }
+}
+
+
+// Introduction to the game and confirm to play the game or quit
+
+confirmPlay = confirm("# Welcome to game of Rock Paper Scissors!\n1. Game is displayed in developer console.\n2. To open developer tools press (F12)\n3. [OK] to play 3 rounds.\n4. [Cancel] to be square.\n");
+
+confirmPlay ? game(3) : console.log("Have a square day!");
+
+
+// Instructions to play the game after cancel or winning the game.
+
+console.log("// Refresh (F5) to play again.")
