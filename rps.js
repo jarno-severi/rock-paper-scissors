@@ -56,7 +56,7 @@ function playRound(playerSelection, computerSelection) {
     console.log("// P1: " + playerSelection + " vs AI: " + computerSelection);
 
     if (playerSelection === computerSelection) {
-        console.log("It's a tie!");
+        alert("It's a tie!");
     }
 
     else {
@@ -64,12 +64,12 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "rock") {
             switch (computerSelection) {
                 case "paper":
-                    console.log("You lose! Paper beats Rock.")
+                    alert("You lose! Paper beats Rock.")
                     computerScore++;
                     break;
 
                 case "scissors":
-                    console.log("You win! Rock beats Scissors")
+                    alert("You win! Rock beats Scissors")
                     playerScore++;
                     break;
             }
@@ -78,12 +78,12 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "paper") {
             switch (computerSelection) {
                 case "scissors":
-                    console.log("You lose! Scissors beats Paper.")
+                    alert("You lose! Scissors beats Paper.")
                     computerScore++;
                     break;
 
                 case "rock":
-                    console.log("You win! Paper beats Rock.")
+                    alert("You win! Paper beats Rock.")
                     playerScore++;
                     break;
             }
@@ -92,19 +92,19 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "scissors") {
             switch (computerSelection) {
                 case "rock":
-                    console.log("You lose! Rock beats Scissors.")
+                    alert("You lose! Rock beats Scissors.")
                     computerScore++;
                     break;
 
                 case "paper":
-                    console.log("You win! Scissors beats Paper.")
+                    alert("You win! Scissors beats Paper.")
                     playerScore++;
                     break;
             }
         }
 
         if (playerSelection === "undefined") {
-            console.log("You lose! Any selection beats no selection!")
+            alert("You lose! Any selection beats no selection!")
             computerScore++;
         }
     }
@@ -131,7 +131,7 @@ function game(rounds) {
 
     newGame ? tryAgain = confirm("Wanna try again?") : tryAgain = false;
 
-    tryAgain ? game(3) : console.log("// GAME OVER");
+    tryAgain ? game(3) : alert("Thank you for playing!");
 }
 
 
