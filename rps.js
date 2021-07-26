@@ -1,3 +1,14 @@
+// Buttons
+
+const buttons = document.querySelectorAll('.button');
+buttons.forEach(button => button.addEventListener('click', () => {
+    playerSelection = (button.textContent).toLowerCase();
+    computerSelection = computerPlay();
+    playRound(playerSelection, computerSelection);
+    console.log("// Score P1: " + playerScore + " AI: " + computerScore);
+}));
+
+
 // Setting up variables for the game
 
 const gameItems = ['rock', 'paper', 'scissors'];
@@ -8,44 +19,8 @@ let playerScore = 0;
 // Return random choice from [rock, paper, scissors] for AI
 
 function computerPlay() {
-
     const random = Math.floor(Math.random() * gameItems.length);
-    let computerSelection = gameItems[random];
-
-    return computerSelection;
-}
-
-
-// Ask for player choice
-
-function playerPlay() {
-
-    let playerSelection = prompt("Rock, Paper or Scissors? [OK to random]");
-
-    // Check for null (Cancel) or empty (OK)
-
-    if (playerSelection === null) {
-        playerSelection = "undefined";
-
-    } else if (playerSelection === "") {
-
-        console.log("Selecting random choice...");
-        const random = Math.floor(Math.random() * gameItems.length);
-        playerSelection = gameItems[random];
-        
-    } else { 
-
-        playerSelection = playerSelection.toLowerCase();
-
-        // Check for typo
-        
-        if (playerSelection !== "rock" && playerSelection !== "paper" && playerSelection !== "scissors") {
-            console.log("Typographical error! Try again.")
-            playerSelection = playerPlay();
-        }
-    } 
-
-    return playerSelection;
+    return gameItems[random];
 }
 
 
@@ -155,11 +130,11 @@ function gameScore() {
 
 // Introduction to the game and confirm to play the game or quit
 
-confirmPlay = confirm("# Welcome to game of Rock Paper Scissors!\n1. Game is displayed in developer console.\n2. To open developer tools press (F12)\n3. [OK] to play 3 rounds.\n4. [Cancel] to be square.\n");
+// confirmPlay = confirm("# Welcome to game of Rock Paper Scissors!\n1. Game is displayed in developer console.\n2. To open developer tools press (F12)\n3. [OK] to play 3 rounds.\n4. [Cancel] to be square.\n");
 
-confirmPlay ? game(3) : console.log("Have a square day!");
+// confirmPlay ? game(3) : console.log("Have a square day!");
 
 
 // Instructions to play the game after cancel or winning the game.
 
-console.log("// Refresh (F5) to play again.")
+// console.log("// Refresh (F5) to play again.")

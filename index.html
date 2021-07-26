@@ -4,9 +4,45 @@
 <head>
   <title>Rock Paper Scissors</title>
   <meta charset="UTF-8" />
+  <style>
+    html, body {
+      height: 100%;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+    .button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex-grow: 1;
+    }
+
+    .rock {
+      background: gray;
+    }
+    .paper {
+      background: cornsilk;
+
+    }
+    .scissors {
+      background: lightcoral;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="container">
+    <div class="button rock">Rock</div>
+    <div class="button paper">Paper</div>
+    <div class="button scissors">Scissors</div>
+  </div>
+
   <script src="rps.js"></script>
 </body>
 
