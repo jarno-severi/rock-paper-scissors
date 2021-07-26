@@ -5,9 +5,20 @@
   <title>Rock Paper Scissors</title>
   <meta charset="UTF-8" />
   <style>
-    html, body {
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
       height: 100%;
     }
+    
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 8px;
+    }
+    
     .container {
       display: flex;
       flex-direction: column;
@@ -15,32 +26,84 @@
       align-items: center;
       justify-content: center;
     }
-    .button {
+    
+    .main {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 100%;
       flex-grow: 1;
+      box-shadow: 0 9px 0 -6px rgba(0, 0, 0, 0.8);
+    }
+
+    .button {
+      margin-top: 10px;
+      width: 99%;
+      cursor: pointer;
+    }
+    
+
+    .board {
+      justify-content: space-evenly;
+      background: black;
+      color: greenyellow;
+      flex-direction: column;
+      box-shadow: 0 9px 0 -6px green;
+      background-image: linear-gradient(black, rgb(0, 30, 0), black);
     }
 
     .rock {
-      background: gray;
+      background: slategray;
     }
+
     .paper {
-      background: cornsilk;
+      background: tan;
 
     }
+
     .scissors {
-      background: lightcoral;
+      background: salmon;
     }
+
+    .scores {
+      font-size: 2rem;
+    }
+
+    .overview {
+      font-size: 1.25rem;
+      text-align: center;
+    }
+    
+    .console {
+      font-family: 'Lucida Console', Monospace;
+    }
+
+    svg {
+      transition: 0.25s;
+    }
+
+    svg:hover {
+      fill: greenyellow;
+    }
+
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="button rock">Rock</div>
-    <div class="button paper">Paper</div>
-    <div class="button scissors">Scissors</div>
+    <div class="main board">
+      <div class="scores console">
+        <span id="pscore">0</span> - <span id="aiscore">0</span>
+      </div>
+      <div class="overview console">
+        <p id="choices">// Players choices are shown here</p>
+        <hr>
+        <p id="overview">// Round result is shown here</p>
+      </div>
+    </div>
+    <div class="main button rock" title="Rock"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M14 6l-4.22 5.63 1.25 1.67L14 9.33 19 16h-8.46l-4.01-5.37L1 18h22L14 6zM5 16l1.52-2.03L8.04 16H5z"/></svg></div>
+    <div class="main button paper" title="Paper"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M16 4H4c-1.1 0-2 .9-2 2v12.01c0 1.1.9 1.99 2 1.99h16c1.1 0 2-.9 2-2v-8l-6-6zM4 18.01V6h11v5h5v7.01H4z"/></svg></div>
+    <div class="main button scissors" title="Scissors"><svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 0 24 24" width="48px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z"/></svg></div>
   </div>
 
   <script src="rps.js"></script>

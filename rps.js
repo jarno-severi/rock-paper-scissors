@@ -2,12 +2,14 @@
 
 const buttons = document.querySelectorAll('.button');
 buttons.forEach(button => button.addEventListener('click', () => {
-    playerSelection = (button.textContent).toLowerCase();
+    playerSelection = (button.title).toLowerCase();
     computerSelection = computerPlay();
     playRound(playerSelection, computerSelection);
-    console.log("// Score P1: " + playerScore + " AI: " + computerScore);
+    const pscore = document.querySelector('#pscore');
+    const aiscore = document.querySelector('#aiscore');
+    pscore.textContent = playerScore;
+    aiscore.textContent = computerScore;
 }));
-
 
 // Setting up variables for the game
 
@@ -28,10 +30,13 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 
-    console.log("// P1: " + playerSelection + " vs AI: " + computerSelection);
+    const choices = document.querySelector('#choices');
+    choices.textContent = playerSelection.toUpperCase() + " vs " + computerSelection.toUpperCase();
+
+    const para = document.querySelector('#overview');
 
     if (playerSelection === computerSelection) {
-        alert("It's a tie!");
+        para.textContent = "It's a tie!";
     }
 
     else {
@@ -39,12 +44,12 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "rock") {
             switch (computerSelection) {
                 case "paper":
-                    alert("You lose! Paper beats Rock.")
+                    para.textContent = "You lose! Paper beats Rock."
                     computerScore++;
                     break;
 
                 case "scissors":
-                    alert("You win! Rock beats Scissors")
+                    para.textContent = "You win! Rock beats Scissors."
                     playerScore++;
                     break;
             }
@@ -53,12 +58,12 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "paper") {
             switch (computerSelection) {
                 case "scissors":
-                    alert("You lose! Scissors beats Paper.")
+                    para.textContent = "You lose! Scissors beats Paper."
                     computerScore++;
                     break;
 
                 case "rock":
-                    alert("You win! Paper beats Rock.")
+                    para.textContent = "You win! Paper beats Rock."
                     playerScore++;
                     break;
             }
@@ -67,12 +72,12 @@ function playRound(playerSelection, computerSelection) {
         if (playerSelection === "scissors") {
             switch (computerSelection) {
                 case "rock":
-                    alert("You lose! Rock beats Scissors.")
+                    para.textContent = "You lose! Rock beats Scissors."
                     computerScore++;
                     break;
 
                 case "paper":
-                    alert("You win! Scissors beats Paper.")
+                    para.textContent = "You win! Scissors beats Paper."
                     playerScore++;
                     break;
             }
@@ -84,57 +89,3 @@ function playRound(playerSelection, computerSelection) {
         }
     }
 }
-
-
-// Define how many rounds of RPS to run
-
-function game(rounds) {
-
-    computerScore = 0;
-    playerScore = 0;
-
-    for (let i = 0; i < rounds; i++) {
-
-        let playerSelection = playerPlay();
-        let computerSelection = computerPlay();
-
-        playRound(playerSelection, computerSelection);
-    }
-
-    let newGame = gameScore();
-    let tryAgain;
-
-    newGame ? tryAgain = confirm("Wanna try again?") : tryAgain = false;
-
-    tryAgain ? game(3) : alert("Thank you for playing!");
-}
-
-
-// Final score and chance to redeem victory after tie or loss, win ends the game. Instructions after a win to play the game again @ tryAgain variable.
-
-function gameScore() {
-
-    if (playerScore === computerScore) {
-        alert("Game was a tie!\n- - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
-        return 1;
-
-    } else if (playerScore > computerScore) {
-        alert("You are the winner!\n- - - - - - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
-
-    } else {
-        alert("Sorry, you lost!\n- - - - - - - - - - - - -\nFinal score: " + playerScore + " - " + computerScore);
-        return 1;
-    }
-}
-
-
-// Introduction to the game and confirm to play the game or quit
-
-// confirmPlay = confirm("# Welcome to game of Rock Paper Scissors!\n1. Game is displayed in developer console.\n2. To open developer tools press (F12)\n3. [OK] to play 3 rounds.\n4. [Cancel] to be square.\n");
-
-// confirmPlay ? game(3) : console.log("Have a square day!");
-
-
-// Instructions to play the game after cancel or winning the game.
-
-// console.log("// Refresh (F5) to play again.")
