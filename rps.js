@@ -2,13 +2,34 @@
 
 const buttons = document.querySelectorAll('.button');
 buttons.forEach(button => button.addEventListener('click', () => {
+
     playerSelection = (button.title).toLowerCase();
     computerSelection = computerPlay();
+
     playRound(playerSelection, computerSelection);
+
     const pscore = document.querySelector('#pscore');
     const aiscore = document.querySelector('#aiscore');
     pscore.textContent = playerScore;
     aiscore.textContent = computerScore;
+
+    if (playerScore === 5 || computerScore === 5) {
+        const end = document.querySelector('#choices');
+        const finalScore = document.querySelector('#overview');
+
+        if (playerScore > computerScore) {
+            end.textContent = "You are the winner!";
+            finalScore.textContent = "Select to start a new game";
+
+        } else {
+            end.textContent = "You lost! Try again?";
+            finalScore.textContent = "Select to start a new game";
+        }
+
+        playerScore = 0;
+        computerScore = 0; 
+    }
+
 }));
 
 buttons.forEach(button => button.addEventListener('mouseenter', () => {
