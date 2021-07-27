@@ -11,6 +11,17 @@ buttons.forEach(button => button.addEventListener('click', () => {
     aiscore.textContent = computerScore;
 }));
 
+buttons.forEach(button => button.addEventListener('mouseenter', () => {
+    svg = button.firstChild;
+    svg.classList.add('hovering');
+}));
+
+buttons.forEach(button => button.addEventListener('mouseleave', () => {
+    svg = button.firstChild;
+    svg.classList.remove('hovering');
+}));
+
+
 // Setting up variables for the game
 
 const gameItems = ['rock', 'paper', 'scissors'];
