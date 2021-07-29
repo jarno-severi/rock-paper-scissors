@@ -1,11 +1,12 @@
-//
-window.onload = function () {
+// Fade first console message at the beginning
+
+window.onload = function() {
     window.setTimeout(fadeout, 1500);
 }
 
 function fadeout() {
     document.querySelector('#overview').classList.add('hide');
-} 
+}
 
 
 // Buttons
@@ -14,6 +15,12 @@ const buttons = document.querySelectorAll('.button');
 buttons.forEach(button => button.addEventListener('click', () => {
 
     playerSelection = (button.title).toLowerCase();
+
+    if (playerSelection === "random") {
+        const random = Math.floor(Math.random() * gameItems.length);
+        playerSelection = gameItems[random];
+    }
+
     computerSelection = computerPlay();
 
     document.getElementById('overview').classList.remove('hide');
@@ -27,9 +34,6 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
     if (playerScore === 5 || computerScore === 5) {
 
-        // document.getElementById('choices').style.opacity = '1';
-
-        // const end = document.querySelector('#choices');
         const overview = document.querySelector('#overview');
 
         if (playerScore > computerScore) {
@@ -84,9 +88,7 @@ function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
         para.textContent = "It's a tie. Try again!";
-    }
-
-    else {
+    } else {
 
         if (playerSelection === "rock") {
             switch (computerSelection) {
