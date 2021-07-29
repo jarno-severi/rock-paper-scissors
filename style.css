@@ -4,7 +4,7 @@
 
  
   body {
-    max-width: 814px;
+    max-width: 640px;
     margin: auto;
     margin-top: 5px;
     padding: 8px;
@@ -18,15 +18,15 @@
   
   .container {
     flex-wrap: wrap;
-    max-width: 800px;
-    justify-content: center;
+    /* max-width: 800px; */
+    justify-content: space-evenly;
     /* height: 100%; */
     /* align-items: center; */
   }
   
   
   .headboard {
-    max-width: 800px;
+    /* max-width: 800px; */
     justify-content: space-between;
     background: black;
     color: #adff2f;
