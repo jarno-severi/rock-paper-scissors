@@ -1,3 +1,13 @@
+//
+window.onload = function () {
+    window.setTimeout(fadeout, 1500);
+}
+
+function fadeout() {
+    document.querySelector('#overview').classList.add('hide');
+} 
+
+
 // Buttons
 
 const buttons = document.querySelectorAll('.button');
@@ -6,28 +16,33 @@ buttons.forEach(button => button.addEventListener('click', () => {
     playerSelection = (button.title).toLowerCase();
     computerSelection = computerPlay();
 
+    document.getElementById('overview').classList.remove('hide');
+
     playRound(playerSelection, computerSelection);
 
     const pscore = document.querySelector('#pscore');
     const aiscore = document.querySelector('#aiscore');
-    pscore.textContent = playerScore;
-    aiscore.textContent = computerScore;
+    pscore.textContent = "P1: " + playerScore;
+    aiscore.textContent = "AI: " + computerScore;
 
     if (playerScore === 5 || computerScore === 5) {
-        const end = document.querySelector('#choices');
-        const finalScore = document.querySelector('#overview');
+
+        // document.getElementById('choices').style.opacity = '1';
+
+        // const end = document.querySelector('#choices');
+        const overview = document.querySelector('#overview');
 
         if (playerScore > computerScore) {
-            end.textContent = "You are the winner!";
-            finalScore.textContent = "Select to start a new game";
+            overview.textContent = "Select to start new game!";
+            alert("You won! Well played! Play again?");
 
         } else {
-            end.textContent = "You lost! Try again?";
-            finalScore.textContent = "Select to start a new game";
+            overview.textContent = "Select to start new game!";
+            alert("Sorry, You lost! Try again?");
         }
 
         playerScore = 0;
-        computerScore = 0; 
+        computerScore = 0;
     }
 
 }));
@@ -62,13 +77,13 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
 
-    const choices = document.querySelector('#choices');
-    choices.textContent = playerSelection.toUpperCase() + " vs " + computerSelection.toUpperCase();
+    // const choices = document.querySelector('#choices');
+    // choices.textContent = playerSelection.toUpperCase() + " vs " + computerSelection.toUpperCase();
 
     const para = document.querySelector('#overview');
 
     if (playerSelection === computerSelection) {
-        para.textContent = "It's a tie!";
+        para.textContent = "It's a tie. Try again!";
     }
 
     else {
